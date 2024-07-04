@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 
 const HeaderNavbar = () => {
   return (
-    <header className="header">
-      <h1 className="header__title">
-        <img src={logo} alt="Logo SportSee" className="header__title__logo" />
+    <nav className="navbar">
+      <h1 className="navbar__title">
+        <img src={logo} alt="Logo SportSee" className="navbar__title__logo" />
       </h1>
       <Link to="/">Accueil</Link>
       <Link to="/user/:id">Profil</Link>
       <Link to="/">Réglage</Link>
       <Link to="/">Communauté</Link>
-    </header>
+    </nav>
   );
 };
 

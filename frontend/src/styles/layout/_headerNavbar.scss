@@ -1,11 +1,12 @@
-.header {
-  background-color: #000;
+.navbar {
+  background-color: #020203;
   height: 91px;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-inline: 28px 91px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 
   &__title {
     height: 60px;

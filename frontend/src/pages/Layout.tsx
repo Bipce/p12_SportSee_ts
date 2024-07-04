@@ -6,8 +6,10 @@ const Layout = () => {
   return (
     <>
       <HeaderNavbar />
-      <LateralNavbar />
-      <Outlet />
+      <section className="container">
+        <LateralNavbar />
+        <Outlet />
+      </section>
     </>
   );
 };
