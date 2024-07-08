@@ -3,7 +3,6 @@
     "id": "1",
     "path": "../../public/data/keyDataIcons/calories-icon.png",
     "type": "Calories",
-    "amount": "1930",
     "unit": "kCal",
     "alt": "Icon pour les calories, feu rouge"
   },
@@ -11,7 +10,6 @@
     "id": "2",
     "path": "../../public/data/keyDataIcons/protein-icon.png",
     "type": "Protéines",
-    "amount": "155",
     "unit": "g",
     "alt": "Icon pour les protéines, cuisse de poulet bleu"
   },
@@ -19,7 +17,6 @@
     "id": "3",
     "path": "../../public/data/keyDataIcons/carbs-icon.png",
     "type": "Glucides",
-    "amount": "290",
     "unit": "g",
     "alt": "Icon pour les glucides, pomme jaune"
   },
@@ -27,7 +24,6 @@
     "id": "4",
     "path": "../../public/data/keyDataIcons/fat-icon.png",
     "type": "Lipides",
-    "amount": "50",
     "unit": "g",
     "alt": "Icon pour les lipides, hamburger rose"
   }

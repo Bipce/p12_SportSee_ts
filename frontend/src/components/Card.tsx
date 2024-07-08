@@ -21,14 +21,16 @@ const Card = ({ userId }: IProps) => {
 
   if (!userKeyData || !icons) return null;
 
+  const userIndiceCount = [userKeyData.calorieCount, userKeyData.proteinCount, userKeyData.carbohydrateCount, userKeyData.lipidCount];
+
   return (
     <>
-      {icons.map(icon => (
+      {icons.map((icon, index) => (
         <article key={icon.id}>
           <figure>
             <img src={icon.path} alt={icon.alt} />
             <figcaption>
-              <p>{icon.amount}{icon.unit}</p>
+              <p>{userIndiceCount[index]}{icon.unit}</p>
               <p>{icon.type}</p>
             </figcaption>
           </figure>
