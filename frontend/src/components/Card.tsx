@@ -10,12 +10,12 @@ interface IProps {
 
 const Card: React.FC<IProps> = ({ alt, amount, icon, type, unit }) => {
   return (
-    <article>
-      <figure>
-        <img src={icon} alt={alt} />
-        <figcaption>
-          <p>{amount}{unit}</p>
-          <p>{type}</p>
+    <article className="card">
+      <figure className="card__figure">
+        <img src={icon} alt={alt} className="card__figure__img" />
+        <figcaption className="card__figure__caption">
+          <p className="card__figure__caption__amount">{amount}{unit}</p>
+          <p className="card__figure__caption__type">{type}</p>
         </figcaption>
       </figure>
     </article>
