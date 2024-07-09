@@ -1,7 +1,6 @@
 import axios from "axios";
 import { IUser } from "../models/User/IUser.ts";
 import { IUserInfos } from "../models/User/IUserInfos.ts";
-import { IUserKeyData } from "../models/User/IUserKeyData.ts";
 
 export const getUsersMainData = async (): Promise<IUser[]> => {
   const res = await axios.get<IUser[]>("/data/userMainData.json");
@@ -21,9 +20,4 @@ export const getUserMainData = async (id: number): Promise<IUser> => {
 export const getUsersInfos = async (id: number): Promise<IUserInfos> => {
   const user = await getUserMainData(id);
   return user.userInfos;
-};
-
-export const getUserKeyData = async (id: number): Promise<IUserKeyData> => {
-  const user = await getUserMainData(id);
-  return user.keyData;
 };
