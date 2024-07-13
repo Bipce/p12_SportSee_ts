@@ -1,6 +1,7 @@
 import axios from "axios";
 import { IUser } from "../models/User/IUser.ts";
 import { IUserActivity } from "../models/UserActivity/IUserActivity.ts";
+import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
 
 export const getUsersMainData = async (): Promise<IUser[]> => {
   const res = await axios.get<IUser[]>("/data/userMainData.json");
@@ -26,4 +27,15 @@ export const getUserActivity = async (id: number): Promise<IUserActivity> => {
   }
 
   return userActivity;
+};
+
+export const getUserAverageSession = async (id: number): Promise<IUserAverageSession> => {
+  const usersAverageSession = await axios.get<IUserAverageSession[]>("/data/userAverageSession.json");
+  const userAverageSession = usersAverageSession.data.find(x => x.userId === id);
+
+  if (!userAverageSession) {
+    throw new Error("UserAverageSession not found");
+  }
+
+  return userAverageSession;
 };

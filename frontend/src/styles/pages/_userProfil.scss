@@ -29,42 +29,6 @@
 
     &__graphs {
       width: 75%;
-
-      &__daily-activity {
-        background-color: $background-color;
-        padding: 24px 32px;
-        border-radius: 5px;
-
-        &__text {
-          display: flex;
-          gap: 52px;
-          margin-bottom: 47px;
-
-          &__title {
-            flex-grow: 1;
-            color: #20253A;
-            font-size: 15px;
-          }
-
-          &__legend {
-            color: $secondary-color;
-            font-size: 14px;
-
-            &__marker {
-              display: inline-block;
-              width: 8px;
-              height: 8px;
-              border-radius: 100%;
-              margin-right: 12px;
-              background-color: #282D30;
-
-              &--color {
-                background-color: $primary-color;
-              }
-            }
-          }
-        }
-      }
     }
   }
 }

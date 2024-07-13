@@ -1,0 +1,14 @@
+.custom-tooltip {
+  padding: 13px 6.5px;
+}
+
+.tooltip {
+  background-color: #E60000;
+  color: #fff;
+  font-size: 7px;
+  text-align: center;
+
+  &__text {
+    margin-bottom: 20px;
+  }
+}
