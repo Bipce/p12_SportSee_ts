@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getUserMainData } from "../services/apiCallMock.ts";
 import Card from "../components/Card.tsx";
 import { IUser } from "../models/User/IUser.ts";
+import DailyActivityGraph from "../components/DailyActivityGraph.tsx";
 
 const UserProfil = () => {
   const [user, setUser] = useState<IUser>();
@@ -21,16 +22,27 @@ const UserProfil = () => {
 
   return (
     <section className="user-section">
-      <div className="user-section__header">
+      <section className="user-section__header">
         <h2 className="user-section__header__name">Bonjour <span
           className="user-section__header__name--color">{user.userInfos.firstName}</span></h2>
         <p className="user-section__header__content">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
-      </div>
+      </section>
 
-      <div className="user-section__content">
+      <section className="user-section__content">
         <div className="user-section__content__graphs">
-          <div>test</div>
-          <div>test</div>
+          <div className="user-section__content__graphs__daily-activity">
+            <div className="user-section__content__graphs__daily-activity__text">
+              <h2 className="user-section__content__graphs__daily-activity__text__title">Activité quotidienne</h2>
+              <p className="user-section__content__graphs__daily-activity__text__legend">
+                <span className="user-section__content__graphs__daily-activity__text__legend__marker"></span>Poids (kg)
+              </p>
+              <p className="user-section__content__graphs__daily-activity__text__legend">
+                <span className="user-section__content__graphs__daily-activity__text__legend__marker
+                user-section__content__graphs__daily-activity__text__legend__marker--color"></span>
+                Calories brûlées (kCal)</p>
+            </div>
+            <DailyActivityGraph />
+          </div>
         </div>
 
         <section className="user-section__content__cards">
@@ -43,7 +55,7 @@ const UserProfil = () => {
           <Card alt="Icon pour les lipides, hamburger rose" amount={user.keyData.lipidCount}
                 icon={`${ICON_BASE_PATH}/fat-icon.png`} type="Lipides" unit="g" />
         </section>
-      </div>
+      </section>
     </section>
   );
 };
