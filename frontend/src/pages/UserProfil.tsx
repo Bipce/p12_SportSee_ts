@@ -22,7 +22,6 @@ const UserProfil = () => {
         setUser(await getUserMainData(parseInt(id)));
         setUserActivity(await getUserActivity(parseInt(id)));
         setAverageSession(await getUserAverageSession(parseInt(id)));
-
       }
     })();
   }, [id]);

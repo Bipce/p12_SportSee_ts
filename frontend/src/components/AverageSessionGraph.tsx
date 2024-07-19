@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const AverageSessionGraph: React.FC<IProps> = ({ averageSession }) => {
-  console.log(averageSession);
+  
   return (
     <div>
       <LineChart width={730} height={250} data={averageSession}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Bar, BarChart, CartesianGrid, Tooltip } from "recharts";
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
 import CustomTooltip from "./CustomTooltip.tsx";
 import { ISession } from "../models/UserActivity/ISession.ts";
 
@@ -8,6 +8,12 @@ interface IProps {
 }
 
 const DailyActivityGraph: React.FC<IProps> = ({ sessions }) => {
+  
+  const dayNumber = (date: Date) => {
+    const dayNumber = new Date(date);
+    return dayNumber.getDate().toString();
+  };
+
   return (
     <div className="content">
       <div className="content__text">
@@ -21,15 +27,16 @@ const DailyActivityGraph: React.FC<IProps> = ({ sessions }) => {
       </div>
 
       <BarChart width={730} height={145} data={sessions} barSize={7}>
-        <CartesianGrid strokeDasharray="3" vertical={false} horizontalPoints={[5, 74, 140]}
+        <CartesianGrid strokeDasharray="3" vertical={false}
         />
-        {/*<XAxis dataKey="name" />*/}
-        {/*<YAxis orientation="right" />*/}
-        <Tooltip itemStyle={{ width: "560px", height: "63px", backgroundColor: "#E60000", color: "#fff" }}
-                 content={<CustomTooltip />} offset={15}
+        <XAxis dataKey="day" tickLine={false} tickFormatter={dayNumber} fill="#DEDEDE" />
+        <YAxis orientation="right" dataKey="kilogram" tickLine={false} domain={["dataMin - 7", "dataMax + 3"]}
+               axisLine={false} />
+        <YAxis orientation="left" dataKey="calories" tickLine={false} domain={[0, "dataMax+20"]} hide={true} />
+        <Tooltip content={<CustomTooltip />} offset={15}
         />
-        <Bar dataKey="kilogram" fill="#282D30" radius={5} />
-        <Bar dataKey="calories" fill="#E60000" radius={5} />
+        <Bar dataKey="kilogram" fill="#282D30" radius={[5, 5, 0, 0]} />
+        <Bar dataKey="calories" fill="#E60000" radius={[5, 5, 0, 0]} />
       </BarChart>
     </div>
   );
