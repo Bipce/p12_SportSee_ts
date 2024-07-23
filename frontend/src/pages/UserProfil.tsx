@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserActivity, getUserAverageSession, getUserMainData } from "../services/apiCallMock.ts";
 import Card from "../components/Card.tsx";
@@ -7,6 +7,7 @@ import DailyActivityGraph from "../components/DailyActivityGraph.tsx";
 import AverageSessionGraph from "../components/AverageSessionGraph.tsx";
 import { IUserActivity } from "../models/UserActivity/IUserActivity.ts";
 import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
+import { UserContext } from "../contexts/UserContext.tsx";
 
 const UserProfil = () => {
   const [user, setUser] = useState<IUser>();
@@ -15,6 +16,9 @@ const UserProfil = () => {
 
   const { id } = useParams<{ id: string }>();
   const ICON_BASE_PATH = "../../public/data/keyDataIcons";
+  const userContext = useContext(UserContext);
+
+  console.log(userContext);
 
   useEffect(() => {
     (async () => {

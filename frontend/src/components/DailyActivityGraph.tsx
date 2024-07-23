@@ -8,7 +8,6 @@ interface IProps {
 }
 
 const DailyActivityGraph: React.FC<IProps> = ({ sessions }) => {
-  
   const dayNumber = (date: Date) => {
     const dayNumber = new Date(date);
     return dayNumber.getDate().toString();
@@ -31,7 +30,7 @@ const DailyActivityGraph: React.FC<IProps> = ({ sessions }) => {
         />
         <XAxis dataKey="day" tickLine={false} tickFormatter={dayNumber} fill="#DEDEDE" />
         <YAxis orientation="right" dataKey="kilogram" tickLine={false} domain={["dataMin - 7", "dataMax + 3"]}
-               axisLine={false} />
+               axisLine={false} yAxisId="right" />
         <YAxis orientation="left" dataKey="calories" tickLine={false} domain={[0, "dataMax+20"]} hide={true} />
         <Tooltip content={<CustomTooltip />} offset={15}
         />
