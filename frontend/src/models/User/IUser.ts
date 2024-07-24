@@ -1,9 +1,5 @@
-import { IUserInfos } from "./IUserInfos.ts";
-import { IUserKeyData } from "./IUserKeyData.ts";
+import { IUserData } from "./IUserData.ts";
 
 export interface IUser {
-  id: number;
-  keyData: IUserKeyData;
-  todayScore: number;
-  userInfos: IUserInfos;
+  data: IUserData;
 }

@@ -1,28 +1,28 @@
 import React, { createContext, useEffect, useState } from "react";
-import { IUser } from "../models/User/IUser.ts";
 import { getUserMainData } from "../services/apiCallMock.ts";
-import { useParams } from "react-router-dom";
+import { IUser } from "../models/User/IUser.ts";
+
 
 interface IProps {
+  changeIsMock: () => void;
+  isMock: boolean;
   user: IUser;
 }
 
 export const UserContext = createContext<IProps>({} as IProps);
 
 export const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const { id } = useParams<{ id: string }>();
-
+  const [isMock, setIsMock] = useState(false);
   const [user, setUser] = useState<IUser>();
 
-  useEffect(() => {
-    (async () => {
-      if (typeof id === "string") {
-        setUser(await getUserMainData(parseInt(id)));
-      }
-    })();
-  }, [id]);
 
-  // if (!user) return null;
+  const loadUser = async (id: number) => {
+    setUser(await getUserMainData(id, isMock));
+  };
 
-  return <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>;
+  const changeIsMock = () => {
+    setIsMock((prev) => !prev);
+  };
+
+  return <UserContext.Provider value={{ isMock, changeIsMock, user }}>{children}</UserContext.Provider>;
 };
