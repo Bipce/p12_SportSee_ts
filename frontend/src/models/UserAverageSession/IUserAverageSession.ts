@@ -1,6 +1,5 @@
-import { IAverageSession } from "./IAverageSession.ts";
+import { IUserAverageSessionData } from "./IUserAverageSessionData.ts";
 
 export interface IUserAverageSession {
-  userId: number;
-  sessions: IAverageSession[];
+  data: IUserAverageSessionData;
 }

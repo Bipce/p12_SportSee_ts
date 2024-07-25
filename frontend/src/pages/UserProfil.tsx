@@ -1,34 +1,24 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getUserActivity, getUserAverageSession, getUserMainData } from "../services/apiCallMock.ts";
+import { UserContext } from "../contexts/UserContext.tsx";
 import Card from "../components/Card.tsx";
 import DailyActivityGraph from "../components/DailyActivityGraph.tsx";
 import AverageSessionGraph from "../components/AverageSessionGraph.tsx";
-import { IUser } from "../models/User/IUser.ts";
-import { IUserActivity } from "../models/UserActivity/IUserActivity.ts";
-import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
-import { UserContext } from "../contexts/UserContext.tsx";
 
 const UserProfil = () => {
-  const [user, setUser] = useState<IUser>();
-  const [userActivity, setUserActivity] = useState<IUserActivity>();
-  const [averageSession, setAverageSession] = useState<IUserAverageSession>();
-
   const { id } = useParams<{ id: string }>();
   const ICON_BASE_PATH = "../../public/data/keyDataIcons";
-  const userContext = useContext(UserContext);
+  const { loadUser, user } = useContext(UserContext);
 
   useEffect(() => {
     (async () => {
       if (typeof id === "string") {
-        setUser(await getUserMainData(parseInt(id), userContext.isMock));
-        setUserActivity(await getUserActivity(parseInt(id)));
-        setAverageSession(await getUserAverageSession(parseInt(id)));
+        await loadUser(parseInt(id));
       }
     })();
-  }, [id, userContext.isMock]);
+  }, [id, loadUser]);
 
-  if (!user || !userActivity || !averageSession) return null;
+  if (!user) return null;
 
   return (
     <section className="user-section">
@@ -40,10 +30,10 @@ const UserProfil = () => {
 
       <section className="user-section__content">
         <div className="user-section__content__graphs">
-          <DailyActivityGraph sessions={userActivity.sessions} />
+          <DailyActivityGraph />
 
           <div>
-            <AverageSessionGraph averageSession={averageSession.sessions} />
+            <AverageSessionGraph />
           </div>
         </div>
 

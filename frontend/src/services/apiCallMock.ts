@@ -10,45 +10,34 @@ export const getUsersMainData = async (): Promise<IUserHome[]> => {
 };
 
 export const getUserMainData = async (id: number, isMock: boolean): Promise<IUser> => {
-  let res;
-
-  if (id === 12 || id === 18 && isMock) {
-    res = await axios.get<IUser>(`/data/${id}/mainData.json`);
-  } else if (id === 12 || id === 18 && !isMock) {
-    res = await axios.get<IUser>(`http://localhost:3000/user/${id}`);
-  }
-
-  if (!res) {
+  if (id != 12 && id != 18) {
     throw new Error("User not found");
   }
 
+  const url = isMock ? `/data/${id}/mainData.json` : `http://localhost:3000/user/${id}`;
+  const res = await axios.get<IUser>(url);
+
   return res.data;
 };
 
-export const getUserActivity = async (id: number): Promise<IUserActivity> => {
-  let res;
-
-  if (id === 12 || id === 18) {
-    res = await axios.get<IUserActivity>(`/data/${id}/activity.json`);
-  }
-
-  if (!res) {
+export const getUserActivity = async (id: number, isMock: boolean): Promise<IUserActivity> => {
+  if (id != 12 && id != 18) {
     throw new Error("UserActivity not found");
   }
 
+  const url = isMock ? `/data/${id}/activity.json` : `http://localhost:3000/user/${id}/activity`;
+  const res = await axios.get<IUserActivity>(url);
+
   return res.data;
 };
 
-export const getUserAverageSession = async (id: number): Promise<IUserAverageSession> => {
-  let res;
-
-  if (id === 12 || id === 18) {
-    res = await axios.get<IUserAverageSession>(`/data/${id}/averageSession.json`);
-  }
-
-  if (!res) {
+export const getUserAverageSession = async (id: number, isMock: boolean): Promise<IUserAverageSession> => {
+  if (id != 12 && id != 18) {
     throw new Error("UserAverageSession not found");
   }
+
+  const url = isMock ? `/data/${id}/averageSession.json` : `http://localhost:3000/user/${id}/average-sessions`;
+  const res = await axios.get<IUserAverageSession>(url);
 
   return res.data;
 };

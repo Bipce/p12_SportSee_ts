@@ -1,16 +1,15 @@
-import React from "react";
-import { IAverageSession } from "../models/UserAverageSession/IAverageSession.ts";
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext.tsx";
 
-interface IProps {
-  averageSession: IAverageSession[];
-}
+const AverageSessionGraph = () => {
+  const { userAverageSession } = useContext(UserContext);
 
-const AverageSessionGraph: React.FC<IProps> = ({ averageSession }) => {
-  
+  if (!userAverageSession) return null;
+
   return (
     <div>
-      <LineChart width={730} height={250} data={averageSession}
+      <LineChart width={730} height={250} data={userAverageSession.data.sessions}
                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="day" />

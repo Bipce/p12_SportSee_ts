@@ -1,6 +1,5 @@
-import { ISession } from "./ISession.ts";
+import { IUserActivityData } from "./IUserActivityData.ts";
 
 export interface IUserActivity {
-  userId: number;
-  sessions: ISession[];
+  data: IUserActivityData;
 }
