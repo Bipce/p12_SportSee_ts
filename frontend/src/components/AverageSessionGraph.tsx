@@ -1,23 +1,26 @@
+import React from "react";
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
-import { useContext } from "react";
-import { UserContext } from "../contexts/UserContext.tsx";
+import { IAverageSession } from "../models/UserAverageSession/IAverageSession.ts";
 
-const AverageSessionGraph = () => {
-  const { userAverageSession } = useContext(UserContext);
+interface IProps {
+  averageSessions: IAverageSession[];
+}
 
-  if (!userAverageSession) return null;
+const AverageSessionGraph: React.FC<IProps> = ({ averageSessions }) => {
+
+  if (!averageSessions) return null;
 
   return (
     <div>
-      <LineChart width={730} height={250} data={userAverageSession.data.sessions}
+      <LineChart width={730} height={250} data={averageSessions}
                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="day" />
-        <YAxis />
+        <XAxis dataKey="day" axisLine={false} tickLine={false} />
+        <YAxis axisLine={false} tickLine={false} />
         <Tooltip />
-        <Line type="stepAfter" dataKey="sessionLenght" stroke="#8884d8" />
-        <Line type="stepAfter" dataKey="day" stroke="#8884d8" />
+        <Line type="monotone" dataKey="sessionLength" stroke="#8884d8" />
       </LineChart>
+
     </div>
   );
 };

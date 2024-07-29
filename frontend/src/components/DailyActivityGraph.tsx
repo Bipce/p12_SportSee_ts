@@ -1,17 +1,20 @@
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
 import CustomTooltip from "./CustomTooltip.tsx";
-import { useContext } from "react";
-import { UserContext } from "../contexts/UserContext.tsx";
+import React from "react";
+import { ISession } from "../models/UserActivity/ISession.ts";
 
-const DailyActivityGraph = () => {
-  const { userActivity } = useContext(UserContext);
+interface IProps {
+  activitySessions: ISession[];
+}
+
+const DailyActivityGraph: React.FC<IProps> = ({ activitySessions }) => {
 
   const dayNumber = (date: Date) => {
     const dayNumber = new Date(date);
     return dayNumber.getDate().toString();
   };
 
-  if (!userActivity) return null;
+  if (!activitySessions) return null;
 
   return (
     <div className="content">
@@ -25,7 +28,7 @@ const DailyActivityGraph = () => {
           Calories brûlées (kCal)</p>
       </div>
 
-      <BarChart width={730} height={145} data={userActivity.data.sessions} barSize={7}>
+      <BarChart width={730} height={145} data={activitySessions} barSize={7}>
         <CartesianGrid strokeDasharray="3" vertical={false}
         />
         <XAxis dataKey="day" tickLine={false} tickFormatter={dayNumber} fill="#DEDEDE" />

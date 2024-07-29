@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { getUsersMainData } from "../services/apiCallMock.ts";
+import { getUsersMainData } from "../services/users.ts";
 import { Link } from "react-router-dom";
 import IUserHome from "../models/User/IUserHome.ts";
-import { UserContext } from "../contexts/UserContext.tsx";
+import { MockContext } from "../contexts/MockContext.tsx";
 
 const Home = () => {
   const [users, setUsers] = useState<IUserHome[]>();
-  const userContext = useContext(UserContext);
+  const { changeIsMock } = useContext(MockContext);
 
   useEffect(() => {
     (async () => {
@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <section className="home">
-      <button className="home__btn" onClick={userContext.changeIsMock}>Mock</button>
+      <button className="home__btn" onClick={changeIsMock}>Mock</button>
       {users.map(user => <Link key={user.id} to={`/user/${user.id}`} className="home__user">{user.name}</Link>)}
     </section>
   );

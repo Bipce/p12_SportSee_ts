@@ -1,24 +1,35 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext.tsx";
+import { MockContext } from "../contexts/MockContext.tsx";
 import Card from "../components/Card.tsx";
 import DailyActivityGraph from "../components/DailyActivityGraph.tsx";
 import AverageSessionGraph from "../components/AverageSessionGraph.tsx";
+import { IUser } from "../models/User/IUser.ts";
+import { IUserActivity } from "../models/UserActivity/IUserActivity.ts";
+import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
+import { APIServiceFactory } from "../services/APIServiceFactory.ts";
 
 const UserProfil = () => {
+  const [user, setUser] = useState<IUser>();
+  const [userActivity, setUserActivity] = useState<IUserActivity>();
+  const [userAverageSession, setUserAverageSession] = useState<IUserAverageSession>();
+
   const { id } = useParams<{ id: string }>();
   const ICON_BASE_PATH = "../../public/data/keyDataIcons";
-  const { loadUser, user } = useContext(UserContext);
+  const { isMock } = useContext(MockContext);
 
   useEffect(() => {
-    (async () => {
-      if (typeof id === "string") {
-        await loadUser(parseInt(id));
-      }
-    })();
-  }, [id, loadUser]);
+    const apiServiceFactory = new APIServiceFactory(isMock);
+    const service = apiServiceFactory.get(parseInt(id!));
 
-  if (!user) return null;
+    (async () => {
+      setUser(await service.getUserMainData());
+      setUserActivity(await service.getUserActivity());
+      setUserAverageSession(await service.getAverageSession());
+    })();
+  }, [id, isMock]);
+
+  if (!user || !userActivity || !userAverageSession) return null;
 
   return (
     <section className="user-section">
@@ -29,13 +40,13 @@ const UserProfil = () => {
       </section>
 
       <section className="user-section__content">
-        <div className="user-section__content__graphs">
-          <DailyActivityGraph />
+        <section className="user-section__content__graphs">
+          <DailyActivityGraph activitySessions={userActivity.data.sessions} />
 
           <div>
-            <AverageSessionGraph />
+            <AverageSessionGraph averageSessions={userAverageSession.data.sessions} />
           </div>
-        </div>
+        </section>
 
         <section className="user-section__content__cards">
           <Card alt="Icon pour les calories, feu rouge" amount={user.data.keyData.calorieCount}
