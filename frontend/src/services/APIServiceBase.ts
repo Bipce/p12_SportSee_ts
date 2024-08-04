@@ -1,6 +1,6 @@
-import { IUserActivity } from "../models/UserActivity/IUserActivity.ts";
-import { IUser } from "../models/User/IUser.ts";
-import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
+import { IUserData } from "../models/User/IUserData.ts";
+import { IUserActivityData } from "../models/UserActivity/IUserActivityData.ts";
+import { IUserAverageSessionData } from "../models/UserAverageSession/IUserAverageSessionData.ts";
 
 export abstract class APIServiceBase {
 
@@ -14,9 +14,9 @@ export abstract class APIServiceBase {
     return this._userId;
   }
 
-  abstract getUserMainData(): Promise<IUser>;
+  abstract getUserMainData(): Promise<IUserData>;
 
-  abstract getUserActivity(): Promise<IUserActivity>;
+  abstract getUserActivity(): Promise<IUserActivityData>;
 
-  abstract getAverageSession(): Promise<IUserAverageSession>;
+  abstract getAverageSession(): Promise<IUserAverageSessionData>;
 }
