@@ -1,9 +1,9 @@
 import React from "react";
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
-import { IAverageSession } from "../models/UserAverageSession/IAverageSession.ts";
+import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
 
 interface IProps {
-  averageSessions: IAverageSession[];
+  averageSessions: IUserAverageSession[];
 }
 
 const AverageSessionGraph: React.FC<IProps> = ({ averageSessions }) => {

@@ -4,15 +4,16 @@ import Card from "../components/Card.tsx";
 import DailyActivityGraph from "../components/DailyActivityGraph.tsx";
 import AverageSessionGraph from "../components/AverageSessionGraph.tsx";
 import { APIServiceFactory } from "../services/APIServiceFactory.ts";
+import { userActivityRequestToDto, userAverageSessionRequestToDto, userRequestToDto } from "../utils/requestsDto.ts";
 import { MockContext } from "../contexts/MockContext.tsx";
-import { IUserData } from "../models/User/IUserData.ts";
-import { IUserActivityData } from "../models/UserActivity/IUserActivityData.ts";
-import { IUserAverageSessionData } from "../models/UserAverageSession/IUserAverageSessionData.ts";
+import { IUser } from "../models/User/IUser.ts";
+import { IUserActivitySession } from "../models/UserActivity/IUserActivitySession.ts";
+import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
 
 const UserProfil = () => {
-  const [user, setUser] = useState<IUserData>();
-  const [userActivity, setUserActivity] = useState<IUserActivityData>();
-  const [userAverageSession, setUserAverageSession] = useState<IUserAverageSessionData>();
+  const [user, setUser] = useState<IUser>();
+  const [userActivitySessions, setUserActivitySessions] = useState<IUserActivitySession[]>();
+  const [userAverageSessions, setUserAverageSessions] = useState<IUserAverageSession[]>();
 
   const { id } = useParams<{ id: string }>();
   const ICON_BASE_PATH = "../../public/data/keyDataIcons";
@@ -23,13 +24,18 @@ const UserProfil = () => {
     const service = apiServiceFactory.get(parseInt(id!));
 
     (async () => {
-      setUser(await service.getUserMainData());
-      setUserActivity(await service.getUserActivity());
-      setUserAverageSession(await service.getAverageSession());
+      const userRequest = await service.getUserMainData();
+      setUser(userRequestToDto(userRequest));
+
+      const userActivityRequest = await service.getUserActivity();
+      setUserActivitySessions(userActivityRequestToDto(userActivityRequest));
+
+      const userAverageSession = await service.getAverageSession();
+      setUserAverageSessions(userAverageSessionRequestToDto(userAverageSession));
     })();
   }, [id, isMock]);
 
-  if (!user || !userActivity || !userAverageSession) return null;
+  if (!user || !userActivitySessions || !userAverageSessions) return null;
 
   return (
     <section className="user-section">
@@ -41,10 +47,10 @@ const UserProfil = () => {
 
       <section className="user-section__content">
         <section className="user-section__content__graphs">
-          <DailyActivityGraph activitySessions={userActivity.sessions} />
+          <DailyActivityGraph activitySessions={userActivitySessions} />
 
           <div>
-            <AverageSessionGraph averageSessions={userAverageSession.sessions} />
+            <AverageSessionGraph averageSessions={userAverageSessions} />
           </div>
         </section>
 

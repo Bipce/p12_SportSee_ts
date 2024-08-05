@@ -1,10 +1,10 @@
+import React from "react";
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
 import CustomTooltip from "./CustomTooltip.tsx";
-import React from "react";
-import { ISession } from "../models/UserActivity/ISession.ts";
+import { IUserActivitySession } from "../models/UserActivity/IUserActivitySession.ts";
 
 interface IProps {
-  activitySessions: ISession[];
+  activitySessions: IUserActivitySession[];
 }
 
 const DailyActivityGraph: React.FC<IProps> = ({ activitySessions }) => {
