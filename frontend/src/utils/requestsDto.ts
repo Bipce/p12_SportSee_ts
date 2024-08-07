@@ -4,6 +4,9 @@ import { IUserActivityRequest } from "../models/UserActivity/IUserActivityReques
 import { IUserActivitySession } from "../models/UserActivity/IUserActivitySession.ts";
 import { IUserAverageSessionRequest } from "../models/UserAverageSession/IUserAverageSessionRequest.ts";
 import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
+import { IUserPerformance } from "../models/UserPerformance/IUserPerformance.ts";
+import { IUserPerformanceRequest } from "../models/UserPerformance/IUserPerformanceRequest.ts";
+import { IUserPerformanceData } from "../models/UserPerformance/IUserPerformanceData.ts";
 
 export const userRequestToDto = (request: IUserRequest): IUser => {
   const data = request.data;
@@ -46,4 +49,25 @@ export const userAverageSessionRequestToDto = (request: IUserAverageSessionReque
     day: x.day,
     sessionLength: x.sessionLength,
   }));
+};
+
+export const userPerformanceRequestToDto = (request: IUserPerformanceRequest): IUserPerformance => {
+  const data = request.data;
+  const kind = data.kind;
+  const dataArray = data.data;
+
+  return {
+    kind: {
+      1: kind["1"],
+      2: kind["2"],
+      3: kind["3"],
+      4: kind["4"],
+      5: kind["5"],
+      6: kind["6"],
+    },
+    data: dataArray.map<IUserPerformanceData>(x => ({
+      value: x.value,
+      kind: x.kind,
+    })),
+  };
 };

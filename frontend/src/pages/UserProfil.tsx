@@ -3,17 +3,26 @@ import { useParams } from "react-router-dom";
 import Card from "../components/Card.tsx";
 import DailyActivityGraph from "../components/DailyActivityGraph.tsx";
 import AverageSessionGraph from "../components/AverageSessionGraph.tsx";
+import PerformanceGraph from "../components/PerformanceGraph.tsx";
+import ScoreGraph from "../components/ScoreGraph.tsx";
 import { APIServiceFactory } from "../services/APIServiceFactory.ts";
-import { userActivityRequestToDto, userAverageSessionRequestToDto, userRequestToDto } from "../utils/requestsDto.ts";
+import {
+  userRequestToDto,
+  userActivityRequestToDto,
+  userAverageSessionRequestToDto,
+  userPerformanceRequestToDto,
+} from "../utils/requestsDto.ts";
 import { MockContext } from "../contexts/MockContext.tsx";
 import { IUser } from "../models/User/IUser.ts";
 import { IUserActivitySession } from "../models/UserActivity/IUserActivitySession.ts";
 import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
+import { IUserPerformance } from "../models/UserPerformance/IUserPerformance.ts";
 
 const UserProfil = () => {
   const [user, setUser] = useState<IUser>();
   const [userActivitySessions, setUserActivitySessions] = useState<IUserActivitySession[]>();
   const [userAverageSessions, setUserAverageSessions] = useState<IUserAverageSession[]>();
+  const [userPerformance, setUserPerformance] = useState<IUserPerformance>();
 
   const { id } = useParams<{ id: string }>();
   const ICON_BASE_PATH = "../../public/data/keyDataIcons";
@@ -32,10 +41,14 @@ const UserProfil = () => {
 
       const userAverageSession = await service.getAverageSession();
       setUserAverageSessions(userAverageSessionRequestToDto(userAverageSession));
+
+      const userPerformanceRequest = await service.getPerformance();
+      setUserPerformance(userPerformanceRequestToDto(userPerformanceRequest));
+
     })();
   }, [id, isMock]);
 
-  if (!user || !userActivitySessions || !userAverageSessions) return null;
+  if (!user || !userActivitySessions || !userAverageSessions || !userPerformance) return null;
 
   return (
     <section className="user-section">
@@ -49,9 +62,11 @@ const UserProfil = () => {
         <section className="user-section__content__graphs">
           <DailyActivityGraph activitySessions={userActivitySessions} />
 
-          <div>
+          <section className="user-section__content__graphs__bottom">
             <AverageSessionGraph averageSessions={userAverageSessions} />
-          </div>
+            <PerformanceGraph performance={userPerformance} />
+            <ScoreGraph score={user.todayScore ? user.todayScore : user.score} />
+          </section>
         </section>
 
         <section className="user-section__content__cards">

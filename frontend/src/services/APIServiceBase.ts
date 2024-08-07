@@ -1,6 +1,7 @@
 import { IUserRequest } from "../models/User/IUserRequest.ts";
 import { IUserActivityRequest } from "../models/UserActivity/IUserActivityRequest.ts";
 import { IUserAverageSessionRequest } from "../models/UserAverageSession/IUserAverageSessionRequest.ts";
+import { IUserPerformanceRequest } from "../models/UserPerformance/IUserPerformanceRequest.ts";
 
 export abstract class APIServiceBase {
 
@@ -19,4 +20,6 @@ export abstract class APIServiceBase {
   abstract getUserActivity(): Promise<IUserActivityRequest>;
 
   abstract getAverageSession(): Promise<IUserAverageSessionRequest>;
+
+  abstract getPerformance(): Promise<IUserPerformanceRequest>
 }

@@ -11,9 +11,9 @@ const AverageSessionGraph: React.FC<IProps> = ({ averageSessions }) => {
   if (!averageSessions) return null;
 
   return (
-    <div>
-      <LineChart width={730} height={250} data={averageSessions}
-                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+    <div className="average-session-container">
+      <LineChart width={258} height={250} data={averageSessions} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                 className="average-session-graph">
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="day" axisLine={false} tickLine={false} />
         <YAxis axisLine={false} tickLine={false} />

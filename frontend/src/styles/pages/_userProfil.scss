@@ -29,6 +29,11 @@
 
     &__graphs {
       width: 75%;
+
+      &__bottom {
+        display: flex;
+        gap: 30px;
+      }
     }
   }
 }
