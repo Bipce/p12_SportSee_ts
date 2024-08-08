@@ -1,0 +1,30 @@
+@import "../utils/variables";
+
+.score-graph {
+  padding: 20px;
+  background-color: #FBFBFB;
+  border-radius: 5px;
+  width: 258px;
+  height: 263px;
+
+  &__title {
+    font-size: 12px;
+  }
+
+  &__text {
+    text-align: center;
+    margin-top: -130px;
+
+    &__title {
+      font-size: 26px;
+      color: $tertiary-color;
+      font-weight: $font-weight-bold;
+    }
+
+    &__objectif {
+      color: #74798C;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+  }
+}

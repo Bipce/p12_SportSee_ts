@@ -1,4 +1,4 @@
-import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
+import { RadialBar, RadialBarChart } from "recharts";
 import React from "react";
 
 interface IProps {
@@ -21,37 +21,18 @@ const ScoreGraph: React.FC<IProps> = ({ score }) => {
   ];
 
   return (
-    <div
-      style={{
-        padding: "20px",
-        backgroundColor: "#FBFBFB",
-        width: "258px",
-      }}>
-
-      <h3>Score</h3>
-      <RadialBarChart
-        width={258}
-        height={200}
-        cx={100}
-        cy={100}
-        innerRadius={70}
-        outerRadius={80}
-        barSize={10}
-        startAngle={90}
-        endAngle={450}
-        data={data}
+    <div className="score-graph">
+      <h2 className="score-graph__title">Score</h2>
+      <RadialBarChart width={258} height={200} cx={110} innerRadius={100} outerRadius={70} barSize={10}
+        // startAngle={100} endAngle={450}
+                      data={data}
       >
-        <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
-        <RadialBar
-          minAngle={15}
-          clockWise
-          dataKey="value"
-          cornerRadius={10}
-        />
+        {/*<PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />*/}
+        <RadialBar dataKey="value" cornerRadius={10} />
       </RadialBarChart>
-      <div style={{ marginTop: "-120px" }}>
-        <h2>{score * 100}%</h2>
-        <p>de votre objectif</p>
+      <div className="score-graph__text">
+        <h3 className="score-graph__text__title">{score * 100}%</h3>
+        <p className="score-graph__text__objectif">de votre <br />objectif</p>
       </div>
     </div>
   );

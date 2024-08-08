@@ -1,4 +1,4 @@
 export interface IUserPerformanceData {
   value: number,
-  kind: number,
+  kind: string,
 }

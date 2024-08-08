@@ -67,7 +67,7 @@ export const userPerformanceRequestToDto = (request: IUserPerformanceRequest): I
     },
     data: dataArray.map<IUserPerformanceData>(x => ({
       value: x.value,
-      kind: x.kind,
+      kind: Object.values(kind)[x.kind - 1],
     })),
   };
 };
