@@ -8,9 +8,9 @@ const HeaderNavbar = () => {
         <img src={logo} alt="Logo SportSee" className="navbar__title__logo" />
       </h1>
       <Link to="/">Accueil</Link>
-      <Link to="/user/:id">Profil</Link>
-      <Link to="/">Réglage</Link>
-      <Link to="/">Communauté</Link>
+      <Link to="/error">Profil</Link>
+      <Link to="/error">Réglage</Link>
+      <Link to="error">Communauté</Link>
     </nav>
   );
 };

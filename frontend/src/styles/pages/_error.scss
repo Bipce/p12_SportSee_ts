@@ -1,0 +1,28 @@
+@import "../utils/variables";
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 91px);
+  width: 100%;
+  gap: 150px;
+
+  &__title {
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    font-size: 150px;
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  &__link {
+    color: #000;
+    text-decoration: underline;
+  }
+}

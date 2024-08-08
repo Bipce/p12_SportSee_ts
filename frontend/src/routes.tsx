@@ -5,12 +5,13 @@ import UserProfil from "./pages/UserProfil.tsx";
 import UserActivity from "./pages/UserActivity.tsx";
 import UserSession from "./pages/UserSession.tsx";
 import UserPerformance from "./pages/UserPerformance.tsx";
+import ErrorLayout from "./pages/ErrorLayout.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <Layout />,
+    errorElement: <ErrorLayout />,
     children: [
       { index: true, element: <Home /> },
       { path: "user/:id", element: <UserProfil /> },
