@@ -7,10 +7,7 @@ import PerformanceGraph from "../components/PerformanceGraph.tsx";
 import ScoreGraph from "../components/ScoreGraph.tsx";
 import { APIServiceFactory } from "../services/APIServiceFactory.ts";
 import {
-  userRequestToDto,
-  userActivityRequestToDto,
-  userAverageSessionRequestToDto,
-  userPerformanceRequestToDto,
+  userRequestToDto, userActivityRequestToDto, userAverageSessionRequestToDto, userPerformanceRequestToDto,
 } from "../utils/requestsDto.ts";
 import { MockContext } from "../contexts/MockContext.tsx";
 import { IUser } from "../models/User/IUser.ts";
@@ -23,6 +20,7 @@ const UserProfil = () => {
   const [userActivitySessions, setUserActivitySessions] = useState<IUserActivitySession[]>();
   const [userAverageSessions, setUserAverageSessions] = useState<IUserAverageSession[]>();
   const [userPerformance, setUserPerformance] = useState<IUserPerformance>();
+  const userScore = user?.todayScore ? user.todayScore : user?.score;
 
   const { id } = useParams<{ id: string }>();
   const ICON_BASE_PATH = "../../public/data/keyDataIcons";
@@ -48,7 +46,7 @@ const UserProfil = () => {
     })();
   }, [id, isMock]);
 
-  if (!user || !userActivitySessions || !userAverageSessions || !userPerformance) return null;
+  if (!user || !userActivitySessions || !userAverageSessions || !userPerformance || !userScore) return null;
 
   return (
     <section className="user-section">
@@ -65,7 +63,7 @@ const UserProfil = () => {
           <section className="user-section__content__graphs__bottom">
             <AverageSessionGraph averageSessions={userAverageSessions} />
             <PerformanceGraph performance={userPerformance} />
-            <ScoreGraph score={user.todayScore ? user.todayScore : user.score} />
+            <ScoreGraph score={userScore} />
           </section>
         </section>
 

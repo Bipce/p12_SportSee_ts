@@ -22,7 +22,7 @@ export class MockAPIService extends APIServiceBase {
   }
 
   async getPerformance(): Promise<IUserPerformanceRequest> {
-    const res = await axios.get<IUserPerformanceRequest>(`${this.userId}/performance`);
+    const res = await axios.get<IUserPerformanceRequest>(`${this.userId}/performance.json`);
     return res.data;
   }
 }
