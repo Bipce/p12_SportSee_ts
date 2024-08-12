@@ -3,16 +3,17 @@
 @import "base/reset";
 @import "base/typography";
 
+@import "layout/mainContainer";
 @import "layout/headerNavbar";
 @import "layout/lateralNavbar";
 @import "layout/container";
 
 @import "components/card";
-@import "components/dailyActivityGraph";
+@import "components/barChartGraph";
 @import "components/tooltip";
-@import "components/averageSessionContainer";
-@import "components/performanceGraph";
-@import "components/scoreGraph";
+@import "components/lineChartGraph";
+@import "components/radarChartGraph";
+@import "components/radialBartChartGraph";
 
 @import "pages/home";
 @import "pages/userProfil";

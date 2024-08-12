@@ -1,0 +1,13 @@
+@import "../utils/variables";
+
+.score-graph {
+  padding: 20px;
+  background-color: #FBFBFB;
+  border-radius: 5px;
+  width: 258px;
+  height: 263px;
+
+  &__title {
+    font-size: 12px;
+  }
+}

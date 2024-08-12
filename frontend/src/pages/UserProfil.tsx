@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "../components/Card.tsx";
-import DailyActivityGraph from "../components/DailyActivityGraph.tsx";
-import AverageSessionGraph from "../components/AverageSessionGraph.tsx";
-import PerformanceGraph from "../components/PerformanceGraph.tsx";
-import ScoreGraph from "../components/ScoreGraph.tsx";
+import BarChartGraph from "../components/BarChartGraph.tsx";
+import LineChartGraph from "../components/LineChartGraph.tsx";
+import RadarChartGraph from "../components/RadarChartGraph.tsx";
+import RadialBartChartGraph from "../components/RadialBartChartGraph.tsx";
 import { APIServiceFactory } from "../services/APIServiceFactory.ts";
 import {
   userRequestToDto, userActivityRequestToDto, userAverageSessionRequestToDto, userPerformanceRequestToDto,
@@ -58,12 +58,12 @@ const UserProfil = () => {
 
       <section className="user-section__content">
         <section className="user-section__content__graphs">
-          <DailyActivityGraph activitySessions={userActivitySessions} />
+          <BarChartGraph activitySessions={userActivitySessions} />
 
           <section className="user-section__content__graphs__bottom">
-            <AverageSessionGraph averageSessions={userAverageSessions} />
-            <PerformanceGraph performance={userPerformance} />
-            <ScoreGraph score={userScore} />
+            <LineChartGraph averageSessions={userAverageSessions} />
+            <RadarChartGraph performance={userPerformance} />
+            <RadialBartChartGraph score={userScore} />
           </section>
         </section>
 

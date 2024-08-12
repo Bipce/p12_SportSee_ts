@@ -44,9 +44,18 @@ export const userActivityRequestToDto = (request: IUserActivityRequest): IUserAc
 export const userAverageSessionRequestToDto = (request: IUserAverageSessionRequest): IUserAverageSession[] => {
   const data = request.data;
   const sessions = data.sessions;
+  const dayMapping: { [key: number]: string } = {
+    1: "L",
+    2: "M",
+    3: "M",
+    4: "J",
+    5: "V",
+    6: "S",
+    7: "D",
+  };
 
   return sessions.map<IUserAverageSession>(x => ({
-    day: x.day,
+    day: dayMapping[x.day],
     sessionLength: x.sessionLength,
   }));
 };

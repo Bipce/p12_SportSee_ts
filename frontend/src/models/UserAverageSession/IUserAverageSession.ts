@@ -1,4 +1,4 @@
 export interface IUserAverageSession {
-  day: number;
+  day: string;
   sessionLength: number;
 }

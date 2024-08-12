@@ -7,8 +7,7 @@ interface IProps {
   activitySessions: IUserActivitySession[];
 }
 
-const DailyActivityGraph: React.FC<IProps> = ({ activitySessions }) => {
-
+const BarChartGraph: React.FC<IProps> = ({ activitySessions }) => {
   const dayNumber = (date: Date) => {
     const dayNumber = new Date(date);
     return dayNumber.getDate().toString();
@@ -44,4 +43,4 @@ const DailyActivityGraph: React.FC<IProps> = ({ activitySessions }) => {
   );
 };
 
-export default DailyActivityGraph;
+export default BarChartGraph;

@@ -6,16 +6,16 @@ interface IProps {
   performance: IUserPerformance;
 }
 
-const PerformanceGraph: React.FC<IProps> = ({ performance }) => {
+const RadarChartGraph: React.FC<IProps> = ({ performance }) => {
   return (
     <div className="performance-graph">
       <RadarChart outerRadius={80} width={258} height={250} data={performance.data}>
-        <PolarGrid />
-        <PolarAngleAxis dataKey="kind" />
+        <PolarGrid radialLines={false} stroke="#fff" />
+        <PolarAngleAxis dataKey="kind" tick={{ fill: "#ffffff", fontSize: 12 }} />
         <Radar dataKey="value" fill="#FF0101" fillOpacity={.7} />
       </RadarChart>
     </div>
   );
 };
 
-export default PerformanceGraph;
+export default RadarChartGraph;
