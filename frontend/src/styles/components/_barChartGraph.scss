@@ -2,24 +2,27 @@
 
 .content {
   background-color: $background-color;
-  padding: 24px 32px;
+  padding-inline: 3%;
   border-radius: 5px;
   margin-bottom: 28px;
+  max-height: 320px;
+  height: fit-content;
 
   &__text {
     display: flex;
-    gap: 52px;
-    margin-bottom: 47px;
+    gap: 5%;
+    margin-bottom: 5%;
+    padding: 5% 0;
 
     &__title {
       flex-grow: 1;
       color: #20253A;
-      font-size: 15px;
+      font-size: 1.5rem;
     }
 
     &__legend {
       color: $secondary-color;
-      font-size: 14px;
+      font-size: 1.4rem;
 
       &__marker {
         display: inline-block;

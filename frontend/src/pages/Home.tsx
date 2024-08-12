@@ -21,9 +21,9 @@ const Home = () => {
       <div className="home__content">
         <h2 className="home__content__title">Choisissez si vous voulez utiliser les datas API ou les datas Mocks.</h2>
         <button className="home__btn" onClick={changeIsMock}>Choisir Datas</button>
-        <p>Vous utilisez les datas {isMock ?
-          <span className="home__content__text">Mock</span> :
-          <span className="home__content__text">API</span>}.</p>
+        <p className="home__content__text">Vous utilisez les datas
+          <span className="home__content__text__type"> {isMock ? "Mock" : "API"}</span>.
+        </p>
       </div>
 
       <div className="home__content">

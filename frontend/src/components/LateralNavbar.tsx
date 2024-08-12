@@ -13,7 +13,7 @@ const LateralNavbar = () => {
         <img src={weightIcon} alt="Icone d'une haltère" />
       </section>
 
-      <p className="lateral__text">Copiryght, SportSee 2020</p>
+      <p className="lateral__text">Copyright, SportSee 2020</p>
     </aside>
   );
 };

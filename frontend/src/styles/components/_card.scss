@@ -2,14 +2,14 @@
 
 .card {
   background-color: $background-color;
-  margin-bottom: 39px;
   border-radius: 5px;
-  padding: 32px 51px 32px 32px;
+  padding: 8% 20% 8% 8%;
+  max-width: 258px;
 
   &__figure {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 15%;
 
     &__img {
       width: 60px;
@@ -19,13 +19,13 @@
     &__caption {
       &__amount {
         color: #282D30;
-        font-size: 20px;
+        font-size: 2rem;
         font-weight: $font-weight-bold;
       }
 
       &__type {
         color: #74798C;
-        font-size: 14px;
+        font-size: 1.4rem;
       }
     }
   }
