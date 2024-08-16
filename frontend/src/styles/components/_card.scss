@@ -3,29 +3,31 @@
 .card {
   background-color: $background-color;
   border-radius: 5px;
-  padding: 8% 20% 8% 8%;
-  max-width: 258px;
+  width: 100%;
+  max-width: 250px;
+  max-height: 124px;
 
   &__figure {
     display: flex;
     align-items: center;
-    gap: 15%;
+    gap: 10%;
+    padding: 5%;
 
     &__img {
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
     }
 
     &__caption {
       &__amount {
         color: #282D30;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: $font-weight-bold;
       }
 
       &__type {
         color: #74798C;
-        font-size: 1.4rem;
+        font-size: 1rem;
       }
     }
   }

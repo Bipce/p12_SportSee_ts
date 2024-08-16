@@ -9,9 +9,9 @@ interface IProps {
 const RadarChartGraph: React.FC<IProps> = ({ performance }) => {
   return (
     <div className="performance-graph">
-      <RadarChart outerRadius={80} width={258} height={250} data={performance.data}>
+      <RadarChart outerRadius={80} data={performance.data} width={250} height={230}>
         <PolarGrid radialLines={false} stroke="#fff" />
-        <PolarAngleAxis dataKey="kind" tick={{ fill: "#ffffff", fontSize: 12 }} />
+        <PolarAngleAxis dataKey="kind" tick={{ fill: "#ffffff", fontSize: 10 }} />
         <Radar dataKey="value" fill="#FF0101" fillOpacity={.7} />
       </RadarChart>
     </div>

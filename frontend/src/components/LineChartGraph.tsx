@@ -1,41 +1,57 @@
 import React from "react";
-import { Line, LineChart, ResponsiveContainer, Tooltip, TooltipProps, XAxis, YAxis } from "recharts";
+import { Line, LineChart, Tooltip, TooltipProps, XAxis, YAxis } from "recharts";
 import { IUserAverageSession } from "../models/UserAverageSession/IUserAverageSession.ts";
+import { CustomCursorProps } from "../models/CustomCursorProps.ts";
 
 interface IProps {
   averageSessions: IUserAverageSession[];
 }
 
-const CustomTooltip: React.FC<TooltipProps<string, string>> = ({ active, payload }) => {
-  if (active && payload && payload.length) {
-
-    return (
-      <div className="custom-tooltip">
-        <p className="label">{`${payload[0].value} min`}</p>
-      </div>
-    );
-  }
-
-  return null;
-};
 
 const LineChartGraph: React.FC<IProps> = ({ averageSessions }) => {
+
+  const CustomTooltip: React.FC<TooltipProps<string, string>> = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+
+      return (
+        <div className="average-session-graph__custom-tooltip">
+          <p>{`${payload[0].value} min`}</p>
+        </div>
+      );
+    }
+
+    return null;
+  };
+  const CustomCursor: React.FC<CustomCursorProps> = ({ points, width }) => {
+    if (!points) return null;
+
+    const { x } = points[0];
+
+    return (
+      <rect fill="#730000" opacity="0.2" x={x} y={-30} width={width} height={260} />
+    );
+  };
+
 
   if (!averageSessions) return null;
 
   return (
     <div className="average-session-graph">
-      <h2 className="average-session-graph__title">Durée moyenne des sessions</h2>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={averageSessions}>
-          <XAxis dataKey="day" axisLine={false} tickLine={false} stroke="#fff" />
-          <YAxis hide />
-          <Tooltip content={<CustomTooltip />} />
-          <Line type="monotone" dataKey="sessionLength" strokeWidth={2} stroke="#fff" dot={false} />
-        </LineChart>
-      </ResponsiveContainer>
+      <LineChart data={averageSessions} width={250} height={230}>
+        <text x="35%" y="10%" textAnchor="middle" dominantBaseline="middle" fontSize={15} fill="#fff" opacity=".5">
+          Durée moyenne des
+        </text>
+        <text x="20%" y="20%" textAnchor="middle" dominantBaseline="middle" fontSize={15} fill="#fff"
+              opacity=".5">sessions
+        </text>
+        <XAxis dataKey="day" axisLine={false} tickLine={false} stroke="#fff" />
+        <YAxis hide />
+        <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
+        <Line type="monotone" dataKey="sessionLength" strokeWidth={2} stroke="#fff" dot={false} />
+      </LineChart>
     </div>
   );
 };
+
 
 export default LineChartGraph;

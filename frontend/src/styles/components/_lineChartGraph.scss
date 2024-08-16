@@ -1,14 +1,14 @@
 .average-session-graph {
   background-color: #FF0000;
   border-radius: 5px;
-  padding: 20px 10px;
-  width: 258px;
-  height: 263px;
+  display: flex;
+  flex-grow: 1;
+  align-items: end;
+  justify-content: center;
+  max-width: 258px;
 
-  &__title {
-    color: #fff;
-    opacity: .5;
-    font-size: 15px;
-    line-height: 24px;
+  &__custom-tooltip {
+    background-color: #fff;
+    padding: 5px;
   }
 }
