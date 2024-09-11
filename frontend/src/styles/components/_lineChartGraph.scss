@@ -2,10 +2,9 @@
   background-color: #FF0000;
   border-radius: 5px;
   display: flex;
-  flex-grow: 1;
   align-items: end;
   justify-content: center;
-  max-width: 258px;
+  width: 32%;
 
   &__custom-tooltip {
     background-color: #fff;
