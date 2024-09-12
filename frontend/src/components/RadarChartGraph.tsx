@@ -1,6 +1,6 @@
 import React from "react";
-import { IUserPerformance } from "../models/UserPerformance/IUserPerformance.ts";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from "recharts";
+import { IUserPerformance } from "../models/UserPerformance/IUserPerformance.ts";
 
 interface IProps {
   performance: IUserPerformance;

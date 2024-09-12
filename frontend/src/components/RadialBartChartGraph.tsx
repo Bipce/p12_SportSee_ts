@@ -1,5 +1,5 @@
-import { RadialBar, RadialBarChart, ResponsiveContainer } from "recharts";
 import React from "react";
+import { RadialBar, RadialBarChart, ResponsiveContainer } from "recharts";
 
 interface IProps {
   score: number;

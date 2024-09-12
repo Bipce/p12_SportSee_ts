@@ -20,6 +20,7 @@ const LineChartGraph: React.FC<IProps> = ({ averageSessions }) => {
 
     return null;
   };
+  
   const CustomCursor: React.FC<CustomCursorProps> = ({ points, width }) => {
     if (!points) return null;
 

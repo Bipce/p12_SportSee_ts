@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { getUsersMainData } from "../services/users.ts";
 import { Link } from "react-router-dom";
+import { getUsersMainData } from "../services/users.ts";
 import { MockContext } from "../contexts/MockContext.tsx";
 import IUserHome from "../models/User/IUserHome.ts";
 

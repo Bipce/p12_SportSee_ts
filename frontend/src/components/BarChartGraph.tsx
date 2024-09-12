@@ -1,7 +1,7 @@
 import React from "react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import CustomTooltip from "./CustomTooltip.tsx";
 import { IUserActivitySession } from "../models/UserActivity/IUserActivitySession.ts";
+import CustomTooltip from "./CustomTooltip.tsx";
 
 interface IProps {
   activitySessions: IUserActivitySession[];
