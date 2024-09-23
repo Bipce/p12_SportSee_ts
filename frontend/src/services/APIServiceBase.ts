@@ -4,7 +4,6 @@ import { IUserAverageSessionRequest } from "../models/UserAverageSession/IUserAv
 import { IUserPerformanceRequest } from "../models/UserPerformance/IUserPerformanceRequest.ts";
 
 export abstract class APIServiceBase {
-
   private readonly _userId: number;
 
   constructor(userId: number) {
