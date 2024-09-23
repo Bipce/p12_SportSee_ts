@@ -20,14 +20,14 @@ const LineChartGraph: React.FC<IProps> = ({ averageSessions }) => {
 
     return null;
   };
-  
+
   const CustomCursor: React.FC<CustomCursorProps> = ({ points, width }) => {
     if (!points) return null;
 
     const { x } = points[0];
 
     return (
-      <rect fill="#730000" opacity="0.2" x={x} y={-30} width={width} height={270} />
+      <rect fill="#730000" opacity="0.2" x={x} y={0} width={width} height={270} />
     );
   };
 
@@ -35,7 +35,7 @@ const LineChartGraph: React.FC<IProps> = ({ averageSessions }) => {
 
   return (
     <div className="average-session-graph">
-      <ResponsiveContainer height={230} width="100%">
+      <ResponsiveContainer height={245} width="100%">
         <LineChart data={averageSessions}>
           <text x="35%" y="10%" textAnchor="middle" dominantBaseline="middle" fontSize={15} fill="#fff" opacity=".5">
             Durée moyenne des
