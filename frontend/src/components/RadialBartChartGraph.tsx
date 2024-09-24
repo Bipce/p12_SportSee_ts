@@ -19,6 +19,8 @@ const RadialBartChartGraph: React.FC<IProps> = ({ score }) => {
     },
   ];
 
+  const graphScore = data.map(x => x.value)[0];
+  
   return (
     <div className="score-graph">
       <h2 className="score-graph__title">Score</h2>
@@ -27,7 +29,7 @@ const RadialBartChartGraph: React.FC<IProps> = ({ score }) => {
           <RadialBar dataKey="value" cornerRadius={10} />
           <circle cx="50%" cy="50%" r="75" fill="#fff" />
           <text x="50%" y="45%" textAnchor="middle" dominantBaseline="middle" fontSize={20} fontWeight="bold">
-            12%
+            {graphScore} %
           </text>
           <text x="50%" y="57%" textAnchor="middle" dominantBaseline="middle" fontSize={14} fill="#888888">
             de votre
