@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Card from "../components/Card.tsx";
 import BarChartGraph from "../components/BarChartGraph.tsx";
 import LineChartGraph from "../components/LineChartGraph.tsx";
@@ -25,26 +25,31 @@ const UserProfil = () => {
   const { id } = useParams<{ id: string }>();
   const ICON_BASE_PATH = "../../public/data/keyDataIcons";
   const { isMock } = useContext(MockContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const apiServiceFactory = new APIServiceFactory(isMock);
     const service = apiServiceFactory.get(parseInt(id!));
 
     (async () => {
-      const userRequest = await service.getUserMainData();
-      setUser(userRequestToDto(userRequest));
+      try {
+        const userRequest = await service.getUserMainData();
+        setUser(userRequestToDto(userRequest));
 
-      const userActivityRequest = await service.getUserActivity();
-      setUserActivitySessions(userActivityRequestToDto(userActivityRequest));
+        const userActivityRequest = await service.getUserActivity();
+        setUserActivitySessions(userActivityRequestToDto(userActivityRequest));
 
-      const userAverageSession = await service.getAverageSession();
-      setUserAverageSessions(userAverageSessionRequestToDto(userAverageSession));
+        const userAverageSession = await service.getAverageSession();
+        setUserAverageSessions(userAverageSessionRequestToDto(userAverageSession));
 
-      const userPerformanceRequest = await service.getPerformance();
-      setUserPerformance(userPerformanceRequestToDto(userPerformanceRequest));
-
+        const userPerformanceRequest = await service.getPerformance();
+        setUserPerformance(userPerformanceRequestToDto(userPerformanceRequest));
+      } catch (err) {
+        navigate("/error");
+      }
     })();
   }, [id, isMock]);
+
 
   if (!user || !userActivitySessions || !userAverageSessions || !userPerformance || !userScore) return null;
 
